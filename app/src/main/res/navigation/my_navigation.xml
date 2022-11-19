@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_fragment1"
+            app:destination="@id/fragment1" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragment2"
+            app:destination="@id/fragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragment3"
+            app:destination="@id/fragment3" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragment4"
+            app:destination="@id/fragment4" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragment5"
+            app:destination="@id/fragment5" />
+        <action
+            android:id="@+id/action_homeFragment_to_fragment6"
+            app:destination="@id/fragment6" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.MessageFragment"
+        android:label="fragment_message"
+        tools:layout="@layout/fragment_message" >
+        <action
+            android:id="@+id/action_messageFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_messageFragment_to_messagesFragment"
+            app:destination="@id/messagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_messageFragment"
+            app:destination="@id/messageFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" />
+    <fragment
+        android:id="@+id/messagesFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.MessagesFragment"
+        android:label="fragment_messages"
+        tools:layout="@layout/fragment_messages" />
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.Fragment1"
+        android:label="fragment_1"
+        tools:layout="@layout/fragment_1" >
+        <action
+            android:id="@+id/action_fragment1_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.Fragment2"
+        android:label="fragment_2"
+        tools:layout="@layout/fragment_2" >
+        <action
+            android:id="@+id/action_fragment2_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.Fragment3"
+        android:label="fragment_3"
+        tools:layout="@layout/fragment_3" >
+        <action
+            android:id="@+id/action_fragment3_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment4"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.Fragment4"
+        android:label="fragment_4"
+        tools:layout="@layout/fragment_4" >
+        <action
+            android:id="@+id/action_fragment4_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment5"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.Fragment5"
+        android:label="fragment_5"
+        tools:layout="@layout/fragment_5" >
+        <action
+            android:id="@+id/action_fragment5_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment6"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.Fragment6"
+        android:label="fragment_6"
+        tools:layout="@layout/fragment_6" >
+        <action
+            android:id="@+id/action_fragment6_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_fullScreenFragment"
+            app:destination="@id/fullScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullScreenFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.FullScreenFragment"
+        android:label="fragment_full_screen"
+        tools:layout="@layout/fragment_full_screen" >
+        <action
+            android:id="@+id/action_fullScreenFragment_to_detailFragment"
+            app:popUpTo="@+id/detailFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="mr.sardorek.myonlinewallpaper.fragmentSall.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" >
+        <action
+            android:id="@+id/action_searchResultFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+</navigation>

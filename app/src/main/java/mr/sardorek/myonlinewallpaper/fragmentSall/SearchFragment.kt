@@ -1,0 +1,94 @@
+package mr.sardorek.myonlinewallpaper.fragmentSall
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.comix.overwatch.HiveProgressView
+import mr.sardorek.myonlinewallpaper.R
+import mr.sardorek.myonlinewallpaper.adapter.CategoriesAdapter
+import mr.sardorek.myonlinewallpaper.modelSearchFrag.CollectionsModelItem
+import mr.sardorek.myonlinewallpaper.util.GetDetailsInfo
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import uz.context.pinterestapp.networking.RetrofitHttp
+
+
+class SearchFragment : Fragment() {
+
+    lateinit var recyclerViewSearch: RecyclerView
+    private lateinit var searchAdapter: CategoriesAdapter
+    lateinit var progressBarSearch: HiveProgressView
+    private lateinit var textView: TextView
+    private lateinit var linearLayout: LinearLayout
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        initViews(view)
+        return view
+    }
+
+    private fun initViews(view: View) {
+
+        recyclerViewSearch = view.findViewById(R.id.recyclerViewSearch)
+        textView = view.findViewById(R.id.textViewSearch)
+        progressBarSearch = view.findViewById(R.id.progress_bar_search)
+        linearLayout = view.findViewById(R.id.linearlayout)
+
+        linearLayout.setOnClickListener {
+            findNavController().navigate(R.id.searchResultFragment)
+        }
+
+        apiPosterListRetrofitFragmentSearch()
+        refreshAdapter()
+
+        recyclerViewSearch.setHasFixedSize(true)
+        recyclerViewSearch.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+    }
+
+    private fun apiPosterListRetrofitFragmentSearch() {
+        progressBarSearch.isVisible = true
+
+        RetrofitHttp.posterService.getCollections()
+            .enqueue(object : Callback<List<CollectionsModelItem>> {
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onResponse(
+                    call: Call<List<CollectionsModelItem>>,
+                    response: Response<List<CollectionsModelItem>>
+                ) {
+                    if (response.isSuccessful) {
+                        searchAdapter.submitData(response.body()!!)
+                        progressBarSearch.isVisible = false
+                    }
+                }
+
+                override fun onFailure(call: Call<List<CollectionsModelItem>>, t: Throwable) {
+                    t.printStackTrace()
+                }
+            })
+    }
+
+    private fun refreshAdapter() {
+        searchAdapter = CategoriesAdapter(requireContext())
+        recyclerViewSearch.adapter = searchAdapter
+        searchAdapter.photoClick = {
+            GetDetailsInfo.id = it.id
+            GetDetailsInfo.links = it.cover_photo.urls.small
+            GetDetailsInfo.title = it.title
+            findNavController().navigate(R.id.detailFragment)
+        }
+    }
+}
